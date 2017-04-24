@@ -12,9 +12,14 @@ let MainScreenRect = UIScreen.main.bounds
 
 class YQAlertView: UIView {
     
-    var tapToDismiss: Bool = false
+    /// 操作按钮水平排列:点击背景, 默认弹出框 `不消失`; 操作按钮垂直排列: 点击背景, 默认弹出框 `消失`
+    var isTapBackgroundToDismiss: Bool = false
     
+    /// 是否执行同步弹出框: 默认不执行;  同步弹出框的说明
     var isSyncAlert: Bool = false
+    
+    /// 点击操作按钮之后, 弹出框是否消失? 默认消失.
+    var isClickAlertButtonToDismiss: Bool = true
     
     /// 自定义头部视图
     var customHeadView: UIView?
@@ -65,7 +70,7 @@ class YQAlertView: UIView {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if tapToDismiss {
+        if isTapBackgroundToDismiss {
             dismiss()
         } else {
             if alertButtonLayoutAxis == .vertical {

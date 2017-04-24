@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         alertView.appendAlertButton(confirm2)
         alertView.insertAlertButton(confirm, at: 0)
         alertView.alertButtonLayoutAxis = .vertical
-        alertView.tapToDismiss = true
+        alertView.isTapBackgroundToDismiss = true
 //        alertView.show()
         
         let alertV = YQAlertNormalView(title: "主标题放在这", detail: "农夫三拳, 有点痛", cancelHandle: { (cancelAction) in
@@ -49,7 +49,7 @@ class ViewController: UIViewController {
         }
         alertV.appendAlertButton(confirm2)
         alertV.isSyncAlert = false
-        alertV.removeAllAlertButtons()
+//        alertV.removeAllAlertButtons()
         alertV.buttonViewToLeftAndRightMargin = (8, 8)
         alertV.alertButtonToButtonMargin = 8
         alertV.removeAlertButton(1)
@@ -69,6 +69,8 @@ class ViewController: UIViewController {
         customContentView.addConstraints([topC, bottomC, centerX, centerY])
         
         alertV.addContentView(content: customContentView)
+        alertV.isClickAlertButtonToDismiss = false
+        alertV.isTapBackgroundToDismiss = true
         alertV.show()
         
         print("谁先执行, 应该是点击之后执行")
