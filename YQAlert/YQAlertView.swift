@@ -84,9 +84,18 @@ extension YQAlertView {
         alertWindow.makeKeyAndVisible()
         alertWindow.addSubview(self)
         animationToShowOrDismiss(true)
+        
+        // 如果是同步弹出框, 显示后需要 `CFRunLoopRun()`
+        if isSyncAlert {
+            CFRunLoopRun()
+        }
     }
     
     func dismiss() {
+        // 如果是同步弹出框, 消失后需要 `CFRunLoopStop(CFRunLoopGetCurrent())`
+        if isSyncAlert {
+            CFRunLoopStop(CFRunLoopGetCurrent())
+        }
         animationToShowOrDismiss(false)
         
 //        self.removeFromSuperview()

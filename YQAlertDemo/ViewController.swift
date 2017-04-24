@@ -48,7 +48,10 @@ class ViewController: UIViewController {
             print("-----点击了确定")
         }
         alertV.appendAlertButton(confirm2)
+        alertV.isSyncAlert = true
         alertV.show()
+        
+        print("谁先执行, 应该是点击之后执行")
     }
 
     override func didReceiveMemoryWarning() {
