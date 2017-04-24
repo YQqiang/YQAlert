@@ -66,6 +66,9 @@ class YQAlertButton: UIButton {
 // MARK:- private action
 extension YQAlertButton {
     @objc fileprivate func clickButtonAction(_ sender: YQAlertButton) {
+        if let alertView = UIApplication.shared.keyWindow?.subviews.first as? YQAlertView {
+            alertView.dismiss()
+        }
         if let handle = handleClosure {
             handle(sender)
         }
