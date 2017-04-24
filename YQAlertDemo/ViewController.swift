@@ -42,17 +42,15 @@ class ViewController: UIViewController {
         alertView.isTapBackgroundToDismiss = true
 //        alertView.show()
         
-        let alertV = YQAlertNormalView(title: "主标题放在这", detail: "农夫三拳, 有点痛", cancelHandle: { (cancelAction) in
-            print("----点击取消")
-        }) { (confirmAction) in
+        let alertV = YQAlertNormalView(title: "主标题放在这", detail: "农夫三拳, 有点痛") { (confirmAction) in
             print("-----点击了确定")
         }
-        alertV.appendAlertButton(confirm2)
+//        alertV.appendAlertButton(confirm2)
         alertV.isSyncAlert = false
 //        alertV.removeAllAlertButtons()
         alertV.buttonViewToLeftAndRightMargin = (8, 8)
         alertV.alertButtonToButtonMargin = 8
-        alertV.removeAlertButton(1)
+//        alertV.removeAlertButton(1)
         alertV.alertButtonLayoutAxis = .horizontal
         
         let customContentView = UIView()
@@ -69,7 +67,7 @@ class ViewController: UIViewController {
         customContentView.addConstraints([topC, bottomC, centerX, centerY])
         
         alertV.addContentView(content: customContentView)
-        alertV.isClickAlertButtonToDismiss = false
+        alertV.isClickAlertButtonToDismiss = true
         alertV.isTapBackgroundToDismiss = true
         alertV.show()
         

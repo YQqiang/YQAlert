@@ -58,6 +58,24 @@ class YQAlertNormalView: YQAlertView {
     /// - Parameters:
     ///   - title: 弹出框的标题
     ///   - detail: 弹出框的内容
+    ///   - confirmTitle: 确认按钮的标题, 默认为 `确认`
+    ///   - confirmType: 确认按钮的类型, 枚举值`YQAlertButtonType`; 默认为 `normal`
+    ///   - confirmHandle: 点击确认按钮的回调
+    init(title: String, detail: String, confirmTitle: String = NSLocalizedString("确认", comment: ""), confirmType: YQAlertButtonType = .normal, confirmHandle: @escaping Handle) {
+        super.init(frame: .zero)
+        titleView = YQAlertTitleView(title, detail: detail)
+        let confirm = YQAlertButton(title: confirmTitle, type: confirmType, handle: confirmHandle)
+        buttonView = YQAlertButtonView(alertButtons: [confirm])
+        titleView?.translatesAutoresizingMaskIntoConstraints = false
+        alertView.translatesAutoresizingMaskIntoConstraints = false
+        createUI()
+    }
+    
+    /// 创建弹出框
+    ///
+    /// - Parameters:
+    ///   - title: 弹出框的标题
+    ///   - detail: 弹出框的内容
     ///   - cancelTitle: 取消按钮的标题, 默认为 `取消`
     ///   - cancelType: 取消按钮的类型, 枚举值`YQAlertButtonType`; 默认为 `cancel`
     ///   - cancelHandle: 点击取消按钮的回调
