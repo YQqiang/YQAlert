@@ -48,11 +48,27 @@ class ViewController: UIViewController {
             print("-----点击了确定")
         }
         alertV.appendAlertButton(confirm2)
-        alertV.isSyncAlert = true
-        alertV.buttonViewToLeftAndRightMargin = (44, 44)
-        alertV.alertButtonToButtonMargin = 44
+        alertV.isSyncAlert = false
+        alertV.removeAllAlertButtons()
+        alertV.buttonViewToLeftAndRightMargin = (8, 8)
+        alertV.alertButtonToButtonMargin = 8
         alertV.removeAlertButton(1)
         alertV.alertButtonLayoutAxis = .horizontal
+        
+        let customContentView = UIView()
+        let imageV = UIImageView(image: #imageLiteral(resourceName: "test.png"))
+        imageV.translatesAutoresizingMaskIntoConstraints = false
+        customContentView.addSubview(imageV)
+        
+        customContentView.bounds = CGRect(x: 0, y: 0, width: 100, height: 300)
+        
+        let topC = NSLayoutConstraint(item: customContentView, attribute: .top, relatedBy: .equal, toItem: imageV, attribute: .top, multiplier: 1.0, constant: 0)
+        let bottomC = NSLayoutConstraint(item: customContentView, attribute: .bottom, relatedBy: .equal, toItem: imageV, attribute: .bottom, multiplier: 1.0, constant: 0)
+        let centerX = NSLayoutConstraint(item: customContentView, attribute: .centerX, relatedBy: .equal, toItem: imageV, attribute: .centerX, multiplier: 1.0, constant: 0)
+        let centerY = NSLayoutConstraint(item: customContentView, attribute: .centerY, relatedBy: .equal, toItem: imageV, attribute: .centerY, multiplier: 1.0, constant: 0)
+        customContentView.addConstraints([topC, bottomC, centerX, centerY])
+        
+        alertV.addContentView(content: customContentView)
         alertV.show()
         
         print("谁先执行, 应该是点击之后执行")

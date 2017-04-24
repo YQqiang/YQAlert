@@ -33,6 +33,7 @@ class YQAlertNormalView: YQAlertView {
     }
 
     fileprivate var hButtonViewConstraint: [NSLayoutConstraint]?
+    fileprivate var vButtonViewConstraint: [NSLayoutConstraint]?
     /// 创建弹出框
     ///
     /// - Parameters:
@@ -99,6 +100,7 @@ extension YQAlertNormalView {
         addConstraint(centerXConstraint)
         addConstraint(centerYConstraint)
         
+        // 操作按钮
         guard let buttonView = buttonView else {
             return
         }
@@ -106,9 +108,9 @@ extension YQAlertNormalView {
         buttonView.alertButtonLayoutAxis = alertButtonLayoutAxis
         alertView.addSubview(buttonView)
         
-        let vButtonViewConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:[titleView]-space-[buttonView]-space-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: ["space": YQAlertConf.verticalMargin], views: ["titleView": titleView, "buttonView": buttonView])
+        vButtonViewConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:[titleView]-space-[buttonView]-space-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: ["space": YQAlertConf.verticalMargin], views: ["titleView": titleView, "buttonView": buttonView])
         hButtonViewConstraint = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(space)-[buttonView]-(space1)-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: ["space": buttonViewToLeftAndRightMargin.left, "space1": buttonViewToLeftAndRightMargin.right], views: ["buttonView": buttonView])
-        addConstraints(vButtonViewConstraint)
+        addConstraints(vButtonViewConstraint!)
         addConstraints(hButtonViewConstraint!)
     }
 }
@@ -142,5 +144,46 @@ extension YQAlertNormalView {
     /// 删除所有的操作按钮
     func removeAllAlertButtons() {
         buttonView?.removeAllAlertButtons()
+    }
+}
+
+// MARK: - 增加内容视图
+extension YQAlertNormalView {
+    func addContentView(content: UIView) {
+        if content === customContentView {
+            return
+        }
+        // 自定义中间内容
+        customContentView = content
+        customContentView?.translatesAutoresizingMaskIntoConstraints = false
+        guard let customContentView = customContentView else {
+            return
+        }
+        guard let titleView = titleView else {
+            return
+        }
+        guard var vButtonViewConstraint = vButtonViewConstraint else {
+            return
+        }
+        
+        removeConstraints(vButtonViewConstraint)
+        
+        alertView.addSubview(customContentView)
+        let vContentViewConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:[titleView]-(space)-[customContentView]-(>=space)-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: ["space": YQAlertConf.verticalMargin], views: ["titleView": titleView, "customContentView": customContentView])
+        let hContentViewConstraint = NSLayoutConstraint.constraints(withVisualFormat: "H:|-space-[customContentView]-space-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: ["space": YQAlertConf.horizontalMargin], views: ["customContentView": customContentView])
+        
+        addConstraints(vContentViewConstraint)
+        addConstraints(hContentViewConstraint)
+        
+        // 操作按钮
+        guard let buttonView = buttonView else {
+            return
+        }
+        
+        buttonView.alertButtonLayoutAxis = alertButtonLayoutAxis
+        alertView.addSubview(buttonView)
+        
+        vButtonViewConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:[customContentView]-space-[buttonView]-space-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: ["space": YQAlertConf.verticalMargin], views: ["customContentView": customContentView, "buttonView": buttonView])
+        addConstraints(vButtonViewConstraint)
     }
 }

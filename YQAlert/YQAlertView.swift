@@ -23,7 +23,7 @@ class YQAlertView: UIView {
     var titleView: YQAlertTitleView?
     
     /// 自定义内容视图
-    var custonContentView: UIView?
+    var customContentView: UIView?
     
     /// 自定义底部视图
     var customBottomView: UIView?
