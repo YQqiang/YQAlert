@@ -9,7 +9,30 @@
 import UIKit
 
 class YQAlertNormalView: YQAlertView {
+    
+    /// 按钮距左边和右边的边距, 默认左右给为30;
+    open var buttonViewToLeftAndRightMargin: (left: CGFloat, right: CGFloat) = (30.0, 30.0) {
+        didSet {
+            guard var hButtonViewConstraint = hButtonViewConstraint, let buttonView = buttonView else {
+                return
+            }
+            removeConstraints(hButtonViewConstraint)
+            hButtonViewConstraint = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(space)-[buttonView]-(space1)-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: ["space": buttonViewToLeftAndRightMargin.left, "space1": buttonViewToLeftAndRightMargin.right], views: ["buttonView": buttonView])
+            addConstraints(hButtonViewConstraint)
+        }
+    }
+    
+    /// 按钮和按钮之间的间距; 默认值为8
+    open var alertButtonToButtonMargin: CGFloat? {
+        didSet {
+            guard let alertButtonToButtonMargin = alertButtonToButtonMargin, let buttonView = buttonView else {
+                return
+            }
+            buttonView.alertButtonToButtonMargin = alertButtonToButtonMargin
+        }
+    }
 
+    fileprivate var hButtonViewConstraint: [NSLayoutConstraint]?
     /// 创建弹出框
     ///
     /// - Parameters:
@@ -83,9 +106,10 @@ extension YQAlertNormalView {
         buttonView.alertButtonLayoutAxis = alertButtonLayoutAxis
         alertView.addSubview(buttonView)
         
-        let vButtonViewConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:[titleView]-space-[buttonView]-space-|", options: [.alignAllTrailing, .alignAllLeading], metrics: ["space": YQAlertConf.verticalMargin], views: ["titleView": titleView, "buttonView": buttonView])
+        let vButtonViewConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:[titleView]-space-[buttonView]-space-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: ["space": YQAlertConf.verticalMargin], views: ["titleView": titleView, "buttonView": buttonView])
+        hButtonViewConstraint = NSLayoutConstraint.constraints(withVisualFormat: "H:|-(space)-[buttonView]-(space1)-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: ["space": buttonViewToLeftAndRightMargin.left, "space1": buttonViewToLeftAndRightMargin.right], views: ["buttonView": buttonView])
         addConstraints(vButtonViewConstraint)
-        
+        addConstraints(hButtonViewConstraint!)
     }
 }
 

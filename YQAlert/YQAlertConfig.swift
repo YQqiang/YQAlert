@@ -87,13 +87,4 @@ open class YQAlertConfig {
     open var destructiveButtonTitleFont = UIFont.systemFont(ofSize: 17)
     open var destructiveButtonTitleColor = UIColor.white
     
-    // 按钮距左边视图的距离
-    open var buttonViewToLeftScreenMargin = 8.0
-    // 按钮距右边视图的距离
-    open var buttonViewToRightScreenMargin = 8.0
-    
-    
-    
-    
-    
 }

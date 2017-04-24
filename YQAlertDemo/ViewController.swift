@@ -49,6 +49,10 @@ class ViewController: UIViewController {
         }
         alertV.appendAlertButton(confirm2)
         alertV.isSyncAlert = true
+        alertV.buttonViewToLeftAndRightMargin = (44, 44)
+        alertV.alertButtonToButtonMargin = 44
+        alertV.removeAlertButton(1)
+        alertV.alertButtonLayoutAxis = .horizontal
         alertV.show()
         
         print("谁先执行, 应该是点击之后执行")

@@ -16,6 +16,8 @@ enum YQAlertButtonLayoutAxis: Int {
 class YQAlertButtonView: UIView {
 
     var alertButtons: [YQAlertButton]
+    
+    /// 操作按钮的排列方式: 水平-`horizontal`; 垂直-`vertical`
     var alertButtonLayoutAxis: YQAlertButtonLayoutAxis? {
         didSet {
             guard let alertButtonLayoutAxis = alertButtonLayoutAxis  else {
@@ -31,6 +33,16 @@ class YQAlertButtonView: UIView {
             case .vertical:
                 stackView.axis = .vertical
             }
+        }
+    }
+    
+    /// 操作按钮之间的间距
+    var alertButtonToButtonMargin: CGFloat = 8.0 {
+        didSet {
+            guard let stackView = stackView else {
+                return
+            }
+            stackView.spacing = alertButtonToButtonMargin
         }
     }
     
@@ -65,7 +77,7 @@ extension YQAlertButtonView {
             return
         }
         stackView.axis = .horizontal
-        stackView.spacing = YQAlertConf.horizontalMargin
+        stackView.spacing = alertButtonToButtonMargin
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stackView)
