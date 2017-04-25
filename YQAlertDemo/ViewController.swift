@@ -12,7 +12,9 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.red
+        let imageV = UIImageView(image: #imageLiteral(resourceName: "test1.jpg"))
+        imageV.frame = MainScreenRect
+        view.addSubview(imageV)
         
     }
     
@@ -54,7 +56,7 @@ class ViewController: UIViewController {
         alertV.alertButtonLayoutAxis = .horizontal
         
         let customContentView = UIView()
-        let imageV = UIImageView(image: #imageLiteral(resourceName: "test.png"))
+        let imageV = UIImageView(image: UIImage(named: "test2.jpg"))
         imageV.translatesAutoresizingMaskIntoConstraints = false
         customContentView.addSubview(imageV)
         
@@ -62,13 +64,18 @@ class ViewController: UIViewController {
         
         let topC = NSLayoutConstraint(item: customContentView, attribute: .top, relatedBy: .equal, toItem: imageV, attribute: .top, multiplier: 1.0, constant: 0)
         let bottomC = NSLayoutConstraint(item: customContentView, attribute: .bottom, relatedBy: .equal, toItem: imageV, attribute: .bottom, multiplier: 1.0, constant: 0)
+        
+        let leftC = NSLayoutConstraint(item: customContentView, attribute: .left, relatedBy: .equal, toItem: imageV, attribute: .left, multiplier: 1.0, constant: 0)
+        let rightC = NSLayoutConstraint(item: customContentView, attribute: .right, relatedBy: .equal, toItem: imageV, attribute: .right, multiplier: 1.0, constant: 0)
+        
         let centerX = NSLayoutConstraint(item: customContentView, attribute: .centerX, relatedBy: .equal, toItem: imageV, attribute: .centerX, multiplier: 1.0, constant: 0)
         let centerY = NSLayoutConstraint(item: customContentView, attribute: .centerY, relatedBy: .equal, toItem: imageV, attribute: .centerY, multiplier: 1.0, constant: 0)
-        customContentView.addConstraints([topC, bottomC, centerX, centerY])
+        customContentView.addConstraints([topC, bottomC, leftC, rightC])
         
         alertV.addContentView(content: customContentView)
         alertV.isClickAlertButtonToDismiss = true
-        alertV.isTapBackgroundToDismiss = true
+        alertV.isTapBackgroundToDismiss = false
+        alertV.visualEffectEnable = false
         alertV.show()
         
         print("谁先执行, 应该是点击之后执行")

@@ -21,8 +21,9 @@
 		2F4348B81EAA248E0055C3F6 /* YQAlertNormalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4348B71EAA248E0055C3F6 /* YQAlertNormalView.swift */; };
 		2F4348BA1EAADC860055C3F6 /* YQAlertButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4348B91EAADC860055C3F6 /* YQAlertButtonView.swift */; };
 		2F4348BC1EAAE0C80055C3F6 /* YQAlertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4348BB1EAAE0C80055C3F6 /* YQAlertButton.swift */; };
-		2FB5D78D1EADDF2100959735 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = 2FB5D78C1EADDF2100959735 /* test.png */; };
 		2FC8416E13C0AD904D68C710 /* Pods_YQAlertDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490AE1EC401D8C5242530B45 /* Pods_YQAlertDemo.framework */; };
+		2FCE9A551EAF2164000070CE /* test2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FCE9A541EAF2164000070CE /* test2.jpg */; };
+		2FCE9A571EAF2C03000070CE /* test1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FCE9A561EAF2C03000070CE /* test1.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +64,8 @@
 		2F4348B71EAA248E0055C3F6 /* YQAlertNormalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YQAlertNormalView.swift; sourceTree = "<group>"; };
 		2F4348B91EAADC860055C3F6 /* YQAlertButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YQAlertButtonView.swift; sourceTree = "<group>"; };
 		2F4348BB1EAAE0C80055C3F6 /* YQAlertButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YQAlertButton.swift; sourceTree = "<group>"; };
-		2FB5D78C1EADDF2100959735 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
+		2FCE9A541EAF2164000070CE /* test2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test2.jpg; sourceTree = "<group>"; };
+		2FCE9A561EAF2C03000070CE /* test1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test1.jpg; sourceTree = "<group>"; };
 		490AE1EC401D8C5242530B45 /* Pods_YQAlertDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YQAlertDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4B7712538DAD1DBBEC301B4 /* Pods-YQAlertDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YQAlertDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YQAlertDemo/Pods-YQAlertDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		DFE37BE304210E17F90CB000 /* Pods-YQAlertDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YQAlertDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-YQAlertDemo/Pods-YQAlertDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -127,7 +129,8 @@
 				2F4348881EA9F81D0055C3F6 /* Assets.xcassets */,
 				2F43488A1EA9F81D0055C3F6 /* LaunchScreen.storyboard */,
 				2F43488D1EA9F81D0055C3F6 /* Info.plist */,
-				2FB5D78C1EADDF2100959735 /* test.png */,
+				2FCE9A541EAF2164000070CE /* test2.jpg */,
+				2FCE9A561EAF2C03000070CE /* test1.jpg */,
 			);
 			path = YQAlertDemo;
 			sourceTree = "<group>";
@@ -292,10 +295,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FCE9A571EAF2C03000070CE /* test1.jpg in Resources */,
+				2FCE9A551EAF2164000070CE /* test2.jpg in Resources */,
 				2F43488C1EA9F81D0055C3F6 /* LaunchScreen.storyboard in Resources */,
 				2F4348891EA9F81D0055C3F6 /* Assets.xcassets in Resources */,
 				2F4348871EA9F81D0055C3F6 /* Main.storyboard in Resources */,
-				2FB5D78D1EADDF2100959735 /* test.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

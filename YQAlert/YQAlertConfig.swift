@@ -27,6 +27,9 @@ open class YQAlertConfig {
     /// 渲染颜色
     open var tintColor = UIColor.white
     
+    /// 遮挡屏幕视图的背景颜色
+    open var dimBackgroundColor = UIColor(white: 0.3, alpha: 0.7)
+    
     /// 控件之间垂直间距
     open var verticalMargin = 8.0
     

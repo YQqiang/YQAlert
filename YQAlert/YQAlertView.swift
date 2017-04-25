@@ -8,7 +8,7 @@
 
 import UIKit
 
-let MainScreenRect = UIScreen.main.bounds
+internal let MainScreenRect = UIScreen.main.bounds
 
 class YQAlertView: UIView {
     
@@ -49,20 +49,44 @@ class YQAlertView: UIView {
             }
         }
     }
+    
+    /// 显示背景是否虚化处理; 默认不虚化
+    var visualEffectEnable: Bool = false {
+        didSet {
+            if visualEffectEnable {
+                // 毛玻璃效果
+                backgroundColor = UIColor.clear
+                addSubview(visualEffectView)
+                visualEffectView.contentView.addSubview(alertView)
+            } else {
+                // 背景不虚化
+                backgroundColor = YQAlertConf.dimBackgroundColor
+                addSubview(alertView)
+                visualEffectView.removeFromSuperview()
+            }
+        }
+    }
 
     fileprivate let alertWindow = UIWindow(frame: MainScreenRect)
+    fileprivate lazy var visualEffectView: UIVisualEffectView = {
+        // 1. 毛玻璃样式
+        let blurEffect = UIBlurEffect(style: .light)
+        // 2. 显示毛玻璃的视图
+        let visualEffectView = UIVisualEffectView(effect: blurEffect)
+        visualEffectView.frame = MainScreenRect
+        return visualEffectView
+    }()
     let alertView = UIView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.frame = MainScreenRect
         self.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        backgroundColor = UIColor(white: 0.6, alpha: 0.4)
+        backgroundColor = YQAlertConf.dimBackgroundColor
         
         alertView.backgroundColor = YQAlertConf.backgroundColor
         alertView.layer.cornerRadius = YQAlertConf.cornerRadius
         addSubview(alertView)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
