@@ -9,43 +9,22 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    fileprivate var alertV: YQAlertNormalView?
     override func viewDidLoad() {
         super.viewDidLoad()
         let imageV = UIImageView(image: #imageLiteral(resourceName: "test1.jpg"))
         imageV.frame = MainScreenRect
+        imageV.isUserInteractionEnabled = true
         view.addSubview(imageV)
         
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // 按钮
-        let cancel = YQAlertButton.init(title: "取消", type: .cancel) { (alertButton) in
-            print("点击了取消------")
-        }
-        let confirm = YQAlertButton.init(title: "确认1", type: .destructive) { (alertButton) in
-            print("点击了确认------确认1")
-        }
-        let confirm1 = YQAlertButton.init(title: "22222", type: .normal) { (alertButton) in
-            print("点击了确认------22222")
-        }
-        let confirm2 = YQAlertButton.init(title: "33333", type: .normal) { (alertButton) in
-            print("点击了确认------33333")
-        }
-        
-        let alertView = YQAlertNormalView(title: "这是主标题", detail: "这是内容文字, \n可以输入很多文字可以输入很多文字可以输入很多文字可以输入很多文字可以输入很多文字可以输入很多文字可以输入很多文字可以输入很多文字")
-        alertView.insertAlertButton(confirm1, at: 0)
-        alertView.insertAlertButton(confirm2, at: 2)
-        alertView.appendAlertButton(cancel)
-        alertView.removeAllAlertButtons()
-        alertView.appendAlertButton(confirm2)
-        alertView.insertAlertButton(confirm, at: 0)
-        alertView.alertButtonLayoutAxis = .vertical
-        alertView.isTapBackgroundToDismiss = true
-//        alertView.show()
-        
-        let alertV = YQAlertNormalView(title: "主标题放在这", detail: "农夫三拳, 有点痛") { (confirmAction) in
+        alertV = YQAlertNormalView(title: "主标题放在这", detail: "农夫三拳, 有点痛") { (confirmAction) in
             print("-----点击了确定")
+        }
+        guard let alertV = alertV else {
+            return
         }
 //        alertV.appendAlertButton(confirm2)
         alertV.isSyncAlert = false
@@ -72,12 +51,18 @@ class ViewController: UIViewController {
         let centerY = NSLayoutConstraint(item: customContentView, attribute: .centerY, relatedBy: .equal, toItem: imageV, attribute: .centerY, multiplier: 1.0, constant: 0)
         customContentView.addConstraints([topC, bottomC, leftC, rightC])
         
+        let button = UIButton(type: .custom)
+        button.setTitle("点击按钮", for: .normal)
+        button.addTarget(self, action: #selector(clickButton), for: .touchUpInside)
+        customContentView.addSubview(button)
+        button.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        button.center = imageV.center
+        
         alertV.addContentView(content: customContentView)
         alertV.isClickAlertButtonToDismiss = true
-        alertV.isTapBackgroundToDismiss = false
+        alertV.isTapBackgroundToDismiss = true
         alertV.visualEffectEnable = false
         alertV.show()
-        
         print("谁先执行, 应该是点击之后执行")
     }
 
@@ -86,6 +71,10 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @objc fileprivate func clickButton() {
+        print(">>>>>>>>>>>点击自定义视图上的按钮\(#function)")
+        alertV?.dismiss()
+    }
 
 }
 

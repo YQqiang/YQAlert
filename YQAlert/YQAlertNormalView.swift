@@ -45,7 +45,7 @@ class YQAlertNormalView: YQAlertView {
         titleView = YQAlertTitleView(title, detail: detail)
         buttonView = YQAlertButtonView(alertButtons: alertButtons)
         titleView?.translatesAutoresizingMaskIntoConstraints = false
-        alertView.translatesAutoresizingMaskIntoConstraints = false
+        alertView?.translatesAutoresizingMaskIntoConstraints = false
         createUI()
     }
     
@@ -67,7 +67,7 @@ class YQAlertNormalView: YQAlertView {
         let confirm = YQAlertButton(title: confirmTitle, type: confirmType, handle: confirmHandle)
         buttonView = YQAlertButtonView(alertButtons: [confirm])
         titleView?.translatesAutoresizingMaskIntoConstraints = false
-        alertView.translatesAutoresizingMaskIntoConstraints = false
+        alertView?.translatesAutoresizingMaskIntoConstraints = false
         createUI()
     }
     
@@ -89,8 +89,12 @@ class YQAlertNormalView: YQAlertView {
         let confirm = YQAlertButton(title: confirmTitle, type: confirmType, handle: confirmHandle)
         buttonView = YQAlertButtonView(alertButtons: [cancel, confirm])
         titleView?.translatesAutoresizingMaskIntoConstraints = false
-        alertView.translatesAutoresizingMaskIntoConstraints = false
+        alertView?.translatesAutoresizingMaskIntoConstraints = false
         createUI()
+    }
+    
+    deinit {
+        print("弹出框释放了")
     }
 
 }
@@ -100,6 +104,9 @@ extension YQAlertNormalView {
     fileprivate func createUI() {
         // 标题和内容
         guard let titleView = titleView else {
+            return
+        }
+        guard let alertView = alertView else {
             return
         }
         
@@ -186,7 +193,7 @@ extension YQAlertNormalView {
         
         removeConstraints(vButtonViewConstraint)
         
-        alertView.addSubview(customContentView)
+        alertView?.addSubview(customContentView)
         let vContentViewConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:[titleView]-(space)-[customContentView]-(>=space)-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: ["space": YQAlertConf.verticalMargin], views: ["titleView": titleView, "customContentView": customContentView])
         let hContentViewConstraint = NSLayoutConstraint.constraints(withVisualFormat: "H:|-space-[customContentView]-space-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: ["space": YQAlertConf.horizontalMargin], views: ["customContentView": customContentView])
         
@@ -199,7 +206,7 @@ extension YQAlertNormalView {
         }
         
         buttonView.alertButtonLayoutAxis = alertButtonLayoutAxis
-        alertView.addSubview(buttonView)
+        alertView?.addSubview(buttonView)
         
         vButtonViewConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:[customContentView]-space-[buttonView]-space-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: ["space": YQAlertConf.verticalMargin], views: ["customContentView": customContentView, "buttonView": buttonView])
         addConstraints(vButtonViewConstraint)

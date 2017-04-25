@@ -53,6 +53,9 @@ class YQAlertView: UIView {
     /// 显示背景是否虚化处理; 默认不虚化
     var visualEffectEnable: Bool = false {
         didSet {
+            guard let alertView = alertView else {
+                return
+            }
             if visualEffectEnable {
                 // 毛玻璃效果
                 backgroundColor = UIColor.clear
@@ -67,7 +70,7 @@ class YQAlertView: UIView {
         }
     }
 
-    fileprivate let alertWindow = UIWindow(frame: MainScreenRect)
+    fileprivate var alertWindow: YQWindow? = YQWindow(frame: MainScreenRect)
     fileprivate lazy var visualEffectView: UIVisualEffectView = {
         // 1. 毛玻璃样式
         let blurEffect = UIBlurEffect(style: .light)
@@ -76,7 +79,7 @@ class YQAlertView: UIView {
         visualEffectView.frame = MainScreenRect
         return visualEffectView
     }()
-    let alertView = UIView()
+    var alertView: UIView? = UIView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -84,6 +87,9 @@ class YQAlertView: UIView {
         self.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         backgroundColor = YQAlertConf.dimBackgroundColor
         
+        guard let alertView = alertView else {
+            return
+        }
         alertView.backgroundColor = YQAlertConf.backgroundColor
         alertView.layer.cornerRadius = YQAlertConf.cornerRadius
         addSubview(alertView)
@@ -107,6 +113,9 @@ class YQAlertView: UIView {
 // MARK:- show & dismiss
 extension YQAlertView {
     func show() {
+        guard let alertWindow = alertWindow else {
+            return
+        }
         alertWindow.windowLevel = UIWindowLevelAlert
         alertWindow.backgroundColor = UIColor.clear
         alertWindow.becomeKey()
@@ -137,14 +146,16 @@ extension YQAlertView {
         
         
         UIView.animate(withDuration: 0.25, animations: {
-            self.alertView.transform = CGAffineTransform.init(scaleX: originScale, y: originScale)
+            self.alertView?.transform = CGAffineTransform.init(scaleX: originScale, y: originScale)
         }) { (compelete) in
             UIView.animate(withDuration: 0.25, animations: {
-                self.alertView.transform = CGAffineTransform.init(scaleX: targetScale, y: targetScale)
+                self.alertView?.transform = CGAffineTransform.init(scaleX: targetScale, y: targetScale)
             }) { (complete) in
                 if !isShow {
                     self.removeFromSuperview()
-                    self.alertWindow.resignFirstResponder()
+                    self.alertWindow?.resignFirstResponder()
+                    self.alertWindow = nil
+                    self.alertView = nil
                 }
             }
         }
