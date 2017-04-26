@@ -1,5 +1,5 @@
 //
-//  Utils.swift
+//  YQUtils.swift
 //  YQAlertDemo
 //
 //  Created by sungrow on 2017/4/22.

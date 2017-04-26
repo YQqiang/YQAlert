@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F234D3E1EAB1E75002D4010 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F234D3D1EAB1E75002D4010 /* Utils.swift */; };
+		2F234D3E1EAB1E75002D4010 /* YQUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F234D3D1EAB1E75002D4010 /* YQUtils.swift */; };
 		2F4348821EA9F81D0055C3F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4348811EA9F81D0055C3F6 /* AppDelegate.swift */; };
 		2F4348841EA9F81D0055C3F6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4348831EA9F81D0055C3F6 /* ViewController.swift */; };
 		2F4348871EA9F81D0055C3F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F4348851EA9F81D0055C3F6 /* Main.storyboard */; };
@@ -45,7 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2F234D3D1EAB1E75002D4010 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		2F234D3D1EAB1E75002D4010 /* YQUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YQUtils.swift; sourceTree = "<group>"; };
 		2F43487E1EA9F81D0055C3F6 /* YQAlertDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YQAlertDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F4348811EA9F81D0055C3F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2F4348831EA9F81D0055C3F6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 				2F4348B31EAA1F930055C3F6 /* YQAlertTitleView.swift */,
 				2F4348B91EAADC860055C3F6 /* YQAlertButtonView.swift */,
 				2F4348BB1EAAE0C80055C3F6 /* YQAlertButton.swift */,
-				2F234D3D1EAB1E75002D4010 /* Utils.swift */,
+				2F234D3D1EAB1E75002D4010 /* YQUtils.swift */,
 			);
 			path = YQAlert;
 			sourceTree = "<group>";
@@ -377,7 +377,7 @@
 			files = (
 				2F4348B61EAA1FD70055C3F6 /* YQAlertConfig.swift in Sources */,
 				2F4348BA1EAADC860055C3F6 /* YQAlertButtonView.swift in Sources */,
-				2F234D3E1EAB1E75002D4010 /* Utils.swift in Sources */,
+				2F234D3E1EAB1E75002D4010 /* YQUtils.swift in Sources */,
 				2FCE9A591EAF3E08000070CE /* YQWindow.swift in Sources */,
 				2F4348B41EAA1F930055C3F6 /* YQAlertTitleView.swift in Sources */,
 				2F4348841EA9F81D0055C3F6 /* ViewController.swift in Sources */,

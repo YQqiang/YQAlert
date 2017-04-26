@@ -13,29 +13,29 @@ internal let MainScreenRect = UIScreen.main.bounds
 class YQAlertView: UIView {
     
     /// 操作按钮水平排列:点击背景, 默认弹出框 `不消失`; 操作按钮垂直排列: 点击背景, 默认弹出框 `消失`
-    var isTapBackgroundToDismiss: Bool = false
+    open var isTapBackgroundToDismiss: Bool = false
     
     /// 是否执行同步弹出框: 默认不执行;  同步弹出框的说明
-    var isSyncAlert: Bool = false
+    open var isSyncAlert: Bool = false
     
     /// 点击操作按钮之后, 弹出框是否消失? 默认消失.
-    var isClickAlertButtonToDismiss: Bool = true
+    open var isClickAlertButtonToDismiss: Bool = true
     
     /// 自定义头部视图
-    var customHeadView: UIView?
+    open var customHeadView: UIView?
     
     /// 默认的标题视图
-    var titleView: YQAlertTitleView?
+    open var titleView: YQAlertTitleView?
     
     /// 自定义内容视图
-    var customContentView: UIView?
+    open var customContentView: UIView?
     
     /// 自定义底部视图
     var customBottomView: UIView?
     
     /// 默认的按钮视图
     var buttonView: YQAlertButtonView?
-    var alertButtonLayoutAxis: YQAlertButtonLayoutAxis? {
+    open var alertButtonLayoutAxis: YQAlertButtonLayoutAxis? {
         didSet {
             guard let alertButtonLayoutAxis = alertButtonLayoutAxis  else {
                 return
@@ -51,7 +51,7 @@ class YQAlertView: UIView {
     }
     
     /// 显示背景是否虚化处理; 默认不虚化
-    var visualEffectEnable: Bool = false {
+    open var visualEffectEnable: Bool = false {
         didSet {
             guard let alertView = alertView else {
                 return
@@ -71,16 +71,16 @@ class YQAlertView: UIView {
     }
     
     /// 弹出框显示动画的执行时长
-    var showAnimationDuration = 0.25
+    open var showAnimationDuration = 0.25
     
     /// 弹出框消失动画的执行时长
-    var dismissAnimationDuration = 0.25
+    open var dismissAnimationDuration = 0.25
     
     /// 自定义弹出框显示动画
-    var showAnimation: ((_ alertView: UIView, _ animationDuration: Double) -> ())?
+    open var showAnimation: ((_ alertView: UIView, _ animationDuration: Double) -> ())?
     
     /// 自定义弹出框消失动画
-    var dismissAnimation: ((_ alertView: UIView, _ animationDuration: Double) -> ())?
+    open var dismissAnimation: ((_ alertView: UIView, _ animationDuration: Double) -> ())?
 
     fileprivate var alertWindow: YQWindow? = YQWindow(frame: MainScreenRect)
     fileprivate lazy var visualEffectView: UIVisualEffectView = {
