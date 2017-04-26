@@ -102,11 +102,11 @@ class YQAlertNormalView: YQAlertView {
 // MARK: - CREATE UI
 extension YQAlertNormalView {
     fileprivate func createUI() {
-        // 标题和内容
-        guard let titleView = titleView else {
+        guard let alertView = alertView else {
             return
         }
-        guard let alertView = alertView else {
+        // 标题和内容
+        guard let titleView = titleView else {
             return
         }
         
@@ -114,7 +114,7 @@ extension YQAlertNormalView {
         addConstraints(hAlertViewConstraint)
         
         alertView.addSubview(titleView)
-        let vTitleViewConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:|-space-[titleView]-(>=space)-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: ["space": YQAlertConf.verticalMargin], views: ["titleView": titleView])
+        let vTitleViewConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:|-(>=space)-[titleView]-(>=space)-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: ["space": YQAlertConf.verticalMargin], views: ["titleView": titleView])
         let hTitleViewConstraint = NSLayoutConstraint.constraints(withVisualFormat: "H:|-space-[titleView]-space-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: ["space": YQAlertConf.horizontalMargin], views: ["titleView": titleView])
         
         let centerXConstraint = NSLayoutConstraint(item: alertView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0)
@@ -210,5 +210,30 @@ extension YQAlertNormalView {
         
         vButtonViewConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:[customContentView]-space-[buttonView]-space-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: ["space": YQAlertConf.verticalMargin], views: ["customContentView": customContentView, "buttonView": buttonView])
         addConstraints(vButtonViewConstraint)
+    }
+}
+
+// MARK: - 增加自定义头部视图
+extension YQAlertNormalView {
+    func addHeadView(headView: UIView) {
+        if headView === customHeadView {
+            return
+        }
+        // 自定义头部视图
+        customHeadView = headView
+        customHeadView?.translatesAutoresizingMaskIntoConstraints = false
+        guard let customHeadView = customHeadView else {
+            return
+        }
+        guard let titleView = titleView else {
+            return
+        }
+        
+        alertView?.addSubview(customHeadView)
+        let vHeadViewConstraint = NSLayoutConstraint.constraints(withVisualFormat: "V:|-space-[customHeadView]-space-[titleView]", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: ["space": YQAlertConf.verticalMargin], views: ["titleView": titleView, "customHeadView": customHeadView])
+        let hHeadViewConstraint = NSLayoutConstraint.constraints(withVisualFormat: "H:|-space-[customHeadView]-space-|", options: NSLayoutFormatOptions.init(rawValue: 0), metrics: ["space": YQAlertConf.horizontalMargin], views: ["customHeadView": customHeadView])
+        
+        addConstraints(vHeadViewConstraint)
+        addConstraints(hHeadViewConstraint)
     }
 }

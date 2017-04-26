@@ -91,7 +91,7 @@ class YQAlertView: UIView {
         visualEffectView.frame = MainScreenRect
         return visualEffectView
     }()
-    var alertView: UIView? = UIView()
+    lazy var alertView: UIView? = UIView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -102,16 +102,20 @@ class YQAlertView: UIView {
         guard let alertView = alertView else {
             return
         }
+        
         alertView.backgroundColor = YQAlertConf.backgroundColor
         alertView.layer.cornerRadius = YQAlertConf.cornerRadius
         addSubview(alertView)
+        self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapBackgoundToDismiss)))
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+}
+
+extension YQAlertView {
+    @objc fileprivate func tapBackgoundToDismiss() {
         if isTapBackgroundToDismiss {
             dismiss()
         } else {

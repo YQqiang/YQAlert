@@ -21,19 +21,50 @@ class ViewController: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let cancel1 = YQAlertButton(title: "取消1🙄", type: .cancel) { (button) in
+            
+        }
+        let cancel2 = YQAlertButton(title: "取消2🤔", type: .cancel) { (button) in
+            
+        }
+        let cancel3 = YQAlertButton(title: "销毁😡", type: .destructive) { (button) in
+            
+        }
+        
         alertV = YQAlertNormalView(title: "主标题放在这", detail: "农夫三拳, 有点痛") { (confirmAction) in
             print("-----点击了确定")
         }
         guard let alertV = alertV else {
             return
         }
-//        alertV.appendAlertButton(confirm2)
+        alertV.appendAlertButton(cancel1)
+        alertV.appendAlertButton(cancel2)
+        alertV.appendAlertButton(cancel3)
         alertV.isSyncAlert = false
 //        alertV.removeAllAlertButtons()
         alertV.buttonViewToLeftAndRightMargin = (8, 8)
         alertV.alertButtonToButtonMargin = 8
 //        alertV.removeAlertButton(1)
-        alertV.alertButtonLayoutAxis = .horizontal
+        alertV.alertButtonLayoutAxis = .vertical
+        
+        let customHeadView = UIView()
+        let checkImageV = UIImageView(image: #imageLiteral(resourceName: "close"))
+        checkImageV.translatesAutoresizingMaskIntoConstraints = false
+        checkImageV.isUserInteractionEnabled = true
+        checkImageV.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(clickButton)))
+        customHeadView.addSubview(checkImageV)
+        let topHeadC = NSLayoutConstraint(item: customHeadView, attribute: .top, relatedBy: .equal, toItem: checkImageV, attribute: .top, multiplier: 1.0, constant: 0)
+        let checkImageVRightC = NSLayoutConstraint(item: customHeadView, attribute: .right, relatedBy: .equal, toItem: checkImageV, attribute: .right, multiplier: 1.0, constant: 0)
+        customHeadView.addConstraints([topHeadC, checkImageVRightC])
+        
+        let alertImageV = UIImageView(image: #imageLiteral(resourceName: "alert"))
+        alertImageV.translatesAutoresizingMaskIntoConstraints = false
+        customHeadView.addSubview(alertImageV)
+        let alertImageVTopC = NSLayoutConstraint(item: customHeadView, attribute: .top, relatedBy: .equal, toItem: alertImageV, attribute: .top, multiplier: 1.0, constant: 0)
+        let alertImageVBottomC = NSLayoutConstraint(item: customHeadView, attribute: .bottom, relatedBy: .equal, toItem: alertImageV, attribute: .bottom, multiplier: 1.0, constant: 0)
+        let alertImageVCenterX = NSLayoutConstraint(item: customHeadView, attribute: .centerX, relatedBy: .equal, toItem: alertImageV, attribute: .centerX, multiplier: 1.0, constant: 0)
+        customHeadView.addConstraints([alertImageVTopC, alertImageVBottomC, alertImageVCenterX])
+        alertV.addHeadView(headView: customHeadView)
         
         let customContentView = UIView()
         let imageV = UIImageView(image: UIImage(named: "test2.jpg"))
@@ -48,16 +79,7 @@ class ViewController: UIViewController {
         let leftC = NSLayoutConstraint(item: customContentView, attribute: .left, relatedBy: .equal, toItem: imageV, attribute: .left, multiplier: 1.0, constant: 0)
         let rightC = NSLayoutConstraint(item: customContentView, attribute: .right, relatedBy: .equal, toItem: imageV, attribute: .right, multiplier: 1.0, constant: 0)
         
-        let centerX = NSLayoutConstraint(item: customContentView, attribute: .centerX, relatedBy: .equal, toItem: imageV, attribute: .centerX, multiplier: 1.0, constant: 0)
-        let centerY = NSLayoutConstraint(item: customContentView, attribute: .centerY, relatedBy: .equal, toItem: imageV, attribute: .centerY, multiplier: 1.0, constant: 0)
         customContentView.addConstraints([topC, bottomC, leftC, rightC])
-        
-        let button = UIButton(type: .custom)
-        button.setTitle("点击按钮", for: .normal)
-        button.addTarget(self, action: #selector(clickButton), for: .touchUpInside)
-        customContentView.addSubview(button)
-        button.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        button.center = imageV.center
         
         alertV.addContentView(content: customContentView)
         alertV.isClickAlertButtonToDismiss = true
@@ -91,7 +113,7 @@ class ViewController: UIViewController {
 
     @objc fileprivate func clickButton() {
         print(">>>>>>>>>>>点击自定义视图上的按钮\(#function)")
-        alertV?.dismiss()
+//        alertV?.dismiss()
     }
 
 }
