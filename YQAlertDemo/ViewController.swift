@@ -17,6 +17,7 @@ class ViewController: UIViewController {
         imageV.isUserInteractionEnabled = true
         view.addSubview(imageV)
         
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -61,7 +62,24 @@ class ViewController: UIViewController {
         alertV.addContentView(content: customContentView)
         alertV.isClickAlertButtonToDismiss = true
         alertV.isTapBackgroundToDismiss = true
-        alertV.visualEffectEnable = false
+        alertV.visualEffectEnable = true
+        alertV.showAnimationDuration = 0.5
+        alertV.dismissAnimationDuration = 0.5
+        alertV.showAnimation = { (alertView, duration) in
+            alertView.transform = CGAffineTransform.init(translationX: 0, y: -800)
+            UIView.animate(withDuration: duration, animations: {
+                alertView.transform = CGAffineTransform.init(translationX: 0, y: 0)
+            }, completion: { (complete) in
+            })
+        }
+        alertV.dismissAnimation = { (alertView, duration) in
+            UIView.animate(withDuration: duration, animations: {
+                alertView.transform = CGAffineTransform.init(translationX: 0, y: -800)
+            }, completion: { (completion) in
+                
+            })
+        }
+        
         alertV.show()
         print("谁先执行, 应该是点击之后执行")
     }

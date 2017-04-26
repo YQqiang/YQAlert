@@ -69,6 +69,10 @@ class YQAlertView: UIView {
             }
         }
     }
+    var showAnimationDuration = 0.25
+    var dismissAnimationDuration = 0.25
+    var showAnimation: ((_ alertView: UIView, _ animationDuration: Double) -> ())?
+    var dismissAnimation: ((_ alertView: UIView, _ animationDuration: Double) -> ())?
 
     fileprivate var alertWindow: YQWindow? = YQWindow(frame: MainScreenRect)
     fileprivate lazy var visualEffectView: UIVisualEffectView = {
@@ -121,7 +125,11 @@ extension YQAlertView {
         alertWindow.becomeKey()
         alertWindow.makeKeyAndVisible()
         alertWindow.addSubview(self)
-        animationToShowOrDismiss(true)
+        if let showAnimation = showAnimation, let alertView = alertView {
+            showAnimation(alertView, showAnimationDuration)
+        } else {
+            animationToShowOrDismiss(true)
+        }
         
         // 如果是同步弹出框, 显示后需要 `CFRunLoopRun()`
         if isSyncAlert {
@@ -134,21 +142,29 @@ extension YQAlertView {
         if isSyncAlert {
             CFRunLoopStop(CFRunLoopGetCurrent())
         }
-        animationToShowOrDismiss(false)
+        if let dismissAnimation = dismissAnimation, let alertView = alertView {
+            dismissAnimation(alertView, dismissAnimationDuration)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + dismissAnimationDuration, execute: {
+                self.removeFromSuperview()
+                self.alertWindow?.resignFirstResponder()
+                self.alertWindow = nil
+                self.alertView = nil
+            })
+        } else {
+            animationToShowOrDismiss(false)
+        }
         
-//        self.removeFromSuperview()
-//        self.alertWindow.resignFirstResponder()
     }
     
     fileprivate func animationToShowOrDismiss(_ isShow: Bool) {
         let originScale: CGFloat = isShow ? 1.1 : 1.0
         let targetScale: CGFloat = isShow ? 1.0 : 1.1
+        let duration = isShow ? showAnimationDuration : dismissAnimationDuration
         
-        
-        UIView.animate(withDuration: 0.25, animations: {
+        UIView.animate(withDuration: duration, animations: {
             self.alertView?.transform = CGAffineTransform.init(scaleX: originScale, y: originScale)
         }) { (compelete) in
-            UIView.animate(withDuration: 0.25, animations: {
+            UIView.animate(withDuration: duration, animations: {
                 self.alertView?.transform = CGAffineTransform.init(scaleX: targetScale, y: targetScale)
             }) { (complete) in
                 if !isShow {
