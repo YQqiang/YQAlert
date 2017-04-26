@@ -69,9 +69,17 @@ class YQAlertView: UIView {
             }
         }
     }
+    
+    /// 弹出框显示动画的执行时长
     var showAnimationDuration = 0.25
+    
+    /// 弹出框消失动画的执行时长
     var dismissAnimationDuration = 0.25
+    
+    /// 自定义弹出框显示动画
     var showAnimation: ((_ alertView: UIView, _ animationDuration: Double) -> ())?
+    
+    /// 自定义弹出框消失动画
     var dismissAnimation: ((_ alertView: UIView, _ animationDuration: Double) -> ())?
 
     fileprivate var alertWindow: YQWindow? = YQWindow(frame: MainScreenRect)
