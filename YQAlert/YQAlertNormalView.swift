@@ -146,14 +146,14 @@ extension YQAlertNormalView {
     /// 追加操作按钮
     ///
     /// - Parameter alertButton: 需要追加的按钮, 可使用 `YQAlertButton` 创建
-    func appendAlertButton(_ alertButton: YQAlertButton) {
+    public func appendAlertButton(_ alertButton: YQAlertButton) {
         buttonView?.appendAlertButton(alertButton)
     }
     
     /// 删除指定位置的操作按钮
     ///
     /// - Parameter at: 指定位置下标
-    func removeAlertButton(_ at: Int) {
+    public func removeAlertButton(_ at: Int) {
         buttonView?.removeAlertButton(at)
     }
     
@@ -162,19 +162,19 @@ extension YQAlertNormalView {
     /// - Parameters:
     ///   - alertButton: 需要插入的按钮, 可使用 `YQAlertButton` 创建
     ///   - at: 插入位置下标
-    func insertAlertButton(_ alertButton: YQAlertButton, at: Int) {
+    public func insertAlertButton(_ alertButton: YQAlertButton, at: Int) {
         buttonView?.insertAlertButton(alertButton, at: at)
     }
     
     /// 删除所有的操作按钮
-    func removeAllAlertButtons() {
+    public func removeAllAlertButtons() {
         buttonView?.removeAllAlertButtons()
     }
 }
 
 // MARK: - 增加内容视图
 extension YQAlertNormalView {
-    func addContentView(content: UIView) {
+    public func addContentView(content: UIView) {
         if content === customContentView {
             return
         }
@@ -215,7 +215,7 @@ extension YQAlertNormalView {
 
 // MARK: - 增加自定义头部视图
 extension YQAlertNormalView {
-    func addHeadView(headView: UIView) {
+    public func addHeadView(headView: UIView) {
         if headView === customHeadView {
             return
         }

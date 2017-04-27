@@ -32,7 +32,7 @@ open class YQAlertTitleView: UIView {
         return self
     }()
     
-    init(_ title: String, detail: String) {
+    public init(_ title: String, detail: String) {
         super.init(frame: .zero)
         titleLabel.text = title
         detailLabel.text = detail
