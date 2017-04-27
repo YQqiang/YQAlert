@@ -21,6 +21,7 @@
 		2F4348B81EAA248E0055C3F6 /* YQAlertNormalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4348B71EAA248E0055C3F6 /* YQAlertNormalView.swift */; };
 		2F4348BA1EAADC860055C3F6 /* YQAlertButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4348B91EAADC860055C3F6 /* YQAlertButtonView.swift */; };
 		2F4348BC1EAAE0C80055C3F6 /* YQAlertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F4348BB1EAAE0C80055C3F6 /* YQAlertButton.swift */; };
+		2F74AA5D1EB1926B008CA372 /* AlertDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F74AA5C1EB1926B008CA372 /* AlertDemoViewController.swift */; };
 		2FC8416E13C0AD904D68C710 /* Pods_YQAlertDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490AE1EC401D8C5242530B45 /* Pods_YQAlertDemo.framework */; };
 		2FCE9A551EAF2164000070CE /* test2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FCE9A541EAF2164000070CE /* test2.jpg */; };
 		2FCE9A571EAF2C03000070CE /* test1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2FCE9A561EAF2C03000070CE /* test1.jpg */; };
@@ -65,6 +66,7 @@
 		2F4348B71EAA248E0055C3F6 /* YQAlertNormalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YQAlertNormalView.swift; sourceTree = "<group>"; };
 		2F4348B91EAADC860055C3F6 /* YQAlertButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YQAlertButtonView.swift; sourceTree = "<group>"; };
 		2F4348BB1EAAE0C80055C3F6 /* YQAlertButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YQAlertButton.swift; sourceTree = "<group>"; };
+		2F74AA5C1EB1926B008CA372 /* AlertDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertDemoViewController.swift; sourceTree = "<group>"; };
 		2FCE9A541EAF2164000070CE /* test2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test2.jpg; sourceTree = "<group>"; };
 		2FCE9A561EAF2C03000070CE /* test1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test1.jpg; sourceTree = "<group>"; };
 		2FCE9A581EAF3E08000070CE /* YQWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YQWindow.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			children = (
 				2F4348811EA9F81D0055C3F6 /* AppDelegate.swift */,
 				2F4348831EA9F81D0055C3F6 /* ViewController.swift */,
+				2F74AA5C1EB1926B008CA372 /* AlertDemoViewController.swift */,
 				2F4348851EA9F81D0055C3F6 /* Main.storyboard */,
 				2F4348881EA9F81D0055C3F6 /* Assets.xcassets */,
 				2F43488A1EA9F81D0055C3F6 /* LaunchScreen.storyboard */,
@@ -384,6 +387,7 @@
 				2F4348BC1EAAE0C80055C3F6 /* YQAlertButton.swift in Sources */,
 				2F4348821EA9F81D0055C3F6 /* AppDelegate.swift in Sources */,
 				2F4348B81EAA248E0055C3F6 /* YQAlertNormalView.swift in Sources */,
+				2F74AA5D1EB1926B008CA372 /* AlertDemoViewController.swift in Sources */,
 				2F4348B21EA9F8EF0055C3F6 /* YQAlertView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
