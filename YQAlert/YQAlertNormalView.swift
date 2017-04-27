@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YQAlertNormalView: YQAlertView {
+open class YQAlertNormalView: YQAlertView {
     
     /// 按钮距左边和右边的边距, 默认左右给为30;
     open var buttonViewToLeftAndRightMargin: (left: CGFloat, right: CGFloat) = (30.0, 30.0) {
@@ -40,7 +40,7 @@ class YQAlertNormalView: YQAlertView {
     ///   - title: 弹出框的标题
     ///   - detail: 弹出框的内容
     ///   - alertButtons: 操作按钮的数组, 可使用`YQAlertButton` 创建按钮, 并构建数组; 默认为空数组 []
-    init(title: String, detail: String, alertButtons: [YQAlertButton] = []) {
+    public init(title: String, detail: String, alertButtons: [YQAlertButton] = []) {
         super.init(frame: .zero)
         titleView = YQAlertTitleView(title, detail: detail)
         buttonView = YQAlertButtonView(alertButtons: alertButtons)
@@ -49,7 +49,7 @@ class YQAlertNormalView: YQAlertView {
         createUI()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -61,7 +61,7 @@ class YQAlertNormalView: YQAlertView {
     ///   - confirmTitle: 确认按钮的标题, 默认为 `确认`
     ///   - confirmType: 确认按钮的类型, 枚举值`YQAlertButtonType`; 默认为 `normal`
     ///   - confirmHandle: 点击确认按钮的回调
-    init(title: String, detail: String, confirmTitle: String = NSLocalizedString("确认", comment: ""), confirmType: YQAlertButtonType = .normal, confirmHandle: @escaping Handle) {
+    public init(title: String, detail: String, confirmTitle: String = NSLocalizedString("确认", comment: ""), confirmType: YQAlertButtonType = .normal, confirmHandle: @escaping Handle) {
         super.init(frame: .zero)
         titleView = YQAlertTitleView(title, detail: detail)
         let confirm = YQAlertButton(title: confirmTitle, type: confirmType, handle: confirmHandle)
@@ -82,7 +82,7 @@ class YQAlertNormalView: YQAlertView {
     ///   - confirmTitle: 确认按钮的标题, 默认为 `确认`
     ///   - confirmType: 确认按钮的类型, 枚举值`YQAlertButtonType`; 默认为 `normal`
     ///   - confirmHandle: 点击确认按钮的回调
-    init(title: String, detail: String, cancelTitle: String = NSLocalizedString("取消", comment: ""), cancelType: YQAlertButtonType = .cancel, cancelHandle: @escaping Handle, confirmTitle: String = NSLocalizedString("确认", comment: ""), confirmType: YQAlertButtonType = .normal, confirmHandle: @escaping Handle) {
+    public init(title: String, detail: String, cancelTitle: String = NSLocalizedString("取消", comment: ""), cancelType: YQAlertButtonType = .cancel, cancelHandle: @escaping Handle, confirmTitle: String = NSLocalizedString("确认", comment: ""), confirmType: YQAlertButtonType = .normal, confirmHandle: @escaping Handle) {
         super.init(frame: .zero)
         titleView = YQAlertTitleView(title, detail: detail)
         let cancel = YQAlertButton(title: cancelTitle, type: cancelType, handle: cancelHandle)

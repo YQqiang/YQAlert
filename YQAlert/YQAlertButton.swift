@@ -8,19 +8,19 @@
 
 import UIKit
 
-enum YQAlertButtonType: Int {
+public enum YQAlertButtonType: Int {
     case normal
     case cancel
     case destructive
 }
 
-typealias Handle = (YQAlertButton) -> ()
+public typealias Handle = (YQAlertButton) -> ()
 
-class YQAlertButton: UIButton {
+public class YQAlertButton: UIButton {
     
     fileprivate var handleClosure: Handle?
     
-    init(title: String, type: YQAlertButtonType, handle: @escaping Handle) {
+    public init(title: String, type: YQAlertButtonType, handle: @escaping Handle) {
         super.init(frame: .zero)
         setTitle(title, for: .normal)
         handleClosure = handle
@@ -57,7 +57,7 @@ class YQAlertButton: UIButton {
         addTarget(self, action: #selector(clickButtonAction(_:)), for: .touchUpInside)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 

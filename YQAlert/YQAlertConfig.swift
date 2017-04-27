@@ -24,9 +24,6 @@ open class YQAlertConfig {
     /// 弹出框的圆角
     open var cornerRadius: CGFloat = 5.0;
     
-    /// 渲染颜色
-    open var tintColor = UIColor.white
-    
     /// 遮挡屏幕视图的背景颜色
     open var dimBackgroundColor = UIColor(white: 0.3, alpha: 0.7)
     
@@ -44,7 +41,7 @@ open class YQAlertConfig {
     
     // MARK:- 配置标题样式
     /// 标题字体
-    open var titleFont = UIFont.systemFont(ofSize: 15)
+    open var titleFont = UIFont.boldSystemFont(ofSize: 18)
     
     /// 标题颜色
     open var titleColor = UIColor.black
@@ -56,16 +53,16 @@ open class YQAlertConfig {
     open var titleNumberOfLines = 0
     
     // MARK:- 配置内容文字样式
-    /// 标题字体
+    /// 内容文字字体
     open var detailFont = UIFont.systemFont(ofSize: 13)
     
-    /// 标题颜色
-    open var detailColor = UIColor.black
+    /// 内容文字颜色
+    open var detailColor = UIColor.lightGray
     
-    /// 标题的对齐方式
+    /// 内容文字的对齐方式
     open var detailAlignment: NSTextAlignment = .center
     
-    /// 标题的行数
+    /// 内容文字的行数
     open var detailNumberOfLines = 0
     
     // MARK:- 配置按钮的样式

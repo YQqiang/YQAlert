@@ -10,7 +10,10 @@ import UIKit
 
 internal let MainScreenRect = UIScreen.main.bounds
 
-class YQAlertView: UIView {
+// `open` 只作用于类类型和类的成员
+// 1. 公开访问的类, 可以在它们定义的模块中被继承, 也可以在引用它的模块中被继承
+// 2. 公开访问的成员, 可以在它们定义的模块中子类中重写, 也可以在引用它的模块中的子类中重写
+open class YQAlertView: UIView {
     
     /// 操作按钮水平排列:点击背景, 默认弹出框 `不消失`; 操作按钮垂直排列: 点击背景, 默认弹出框 `消失`
     open var isTapBackgroundToDismiss: Bool = false
@@ -34,7 +37,7 @@ class YQAlertView: UIView {
     var customBottomView: UIView?
     
     /// 默认的按钮视图
-    var buttonView: YQAlertButtonView?
+    open var buttonView: YQAlertButtonView?
     open var alertButtonLayoutAxis: YQAlertButtonLayoutAxis? {
         didSet {
             guard let alertButtonLayoutAxis = alertButtonLayoutAxis  else {
@@ -109,7 +112,7 @@ class YQAlertView: UIView {
         self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapBackgoundToDismiss)))
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
@@ -128,7 +131,7 @@ extension YQAlertView {
 
 // MARK:- show & dismiss
 extension YQAlertView {
-    func show() {
+    public func show() {
         guard let alertWindow = alertWindow else {
             return
         }
@@ -149,7 +152,7 @@ extension YQAlertView {
         }
     }
     
-    func dismiss() {
+    public func dismiss() {
         // 如果是同步弹出框, 消失后需要 `CFRunLoopStop(CFRunLoopGetCurrent())`
         if isSyncAlert {
             CFRunLoopStop(CFRunLoopGetCurrent())

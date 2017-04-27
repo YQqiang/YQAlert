@@ -8,12 +8,12 @@
 
 import UIKit
 
-enum YQAlertButtonLayoutAxis: Int {
+public enum YQAlertButtonLayoutAxis: Int {
     case horizontal
     case vertical
 }
 
-class YQAlertButtonView: UIView {
+open class YQAlertButtonView: UIView {
 
     var alertButtons: [YQAlertButton]
     
@@ -54,14 +54,14 @@ class YQAlertButtonView: UIView {
     fileprivate var bottomC: NSLayoutConstraint!
     fileprivate var rightC: NSLayoutConstraint!
     
-    init(alertButtons: [YQAlertButton]) {
+    public init(alertButtons: [YQAlertButton]) {
         self.alertButtons = alertButtons
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         createUI()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
