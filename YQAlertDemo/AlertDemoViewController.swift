@@ -28,6 +28,28 @@ class AlertDemoViewController: UIViewController {
         visualEffectSwitch.setOn(false, animated: true)
         alertButtonLayoutAxisSwitch.setOn(false, animated: true)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let alertV = YQAlertNormalView(title: "标题", detail: "内容文字") { (button) in
+            print(">>>>>>>>>>\(String(describing: button.titleLabel?.text))")
+        }
+        
+        let customContentView = UIView()
+        let imageV = UIImageView(image: UIImage(named: "test2.jpg"))
+        imageV.translatesAutoresizingMaskIntoConstraints = false
+        customContentView.addSubview(imageV)
+        let topC = NSLayoutConstraint(item: customContentView, attribute: .top, relatedBy: .equal, toItem: imageV, attribute: .top, multiplier: 1.0, constant: 0)
+        let bottomC = NSLayoutConstraint(item: customContentView, attribute: .bottom, relatedBy: .equal, toItem: imageV, attribute: .bottom, multiplier: 1.0, constant: 0)
+        
+        let leftC = NSLayoutConstraint(item: customContentView, attribute: .left, relatedBy: .equal, toItem: imageV, attribute: .left, multiplier: 1.0, constant: 0)
+        let rightC = NSLayoutConstraint(item: customContentView, attribute: .right, relatedBy: .equal, toItem: imageV, attribute: .right, multiplier: 1.0, constant: 0)
+        customContentView.addConstraints([topC, bottomC, leftC, rightC])
+        alertV.addContentView(content: customContentView)
+        
+        alertV.buttonViewToLeftAndRightMargin = (8.0, 8.0)
+        alertV.show()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
