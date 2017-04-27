@@ -6,6 +6,7 @@
 
 ## 弹出框结构
 ![alertStructure.png](https://github.com/YQqiang/YQAlert/blob/master/alertStructure.png)
+
 | 标注 | 说明 |
 | :-: | :-: |
 | ① | 自定义头部视图 |
@@ -176,7 +177,7 @@ end
 ```
 ### 基本用法
 #### 仅有标题和内容文字
-[noneButton](https://github.com/YQqiang/YQAlert/blob/master/noneButton.png)
+![noneButton](https://github.com/YQqiang/YQAlert/blob/master/noneButton.png)
 ```swift
 let alertV = YQAlertNormalView(title: "标题", detail: "内容文字")
 alertV.isTapBackgroundToDismiss = true
@@ -184,7 +185,7 @@ alertV.show()
 ```
 
 #### 创建一个按钮的弹出框, 使用闭包获取到按钮的点击回调; 默认按钮标题为`确认`, 也可以设置标题; 默认按钮类型为普通类型`normal`, 也可以设置按钮类型
-[oneButton](https://github.com/YQqiang/YQAlert/blob/master/oneButton.png)
+![oneButton](https://github.com/YQqiang/YQAlert/blob/master/oneButton.png)
 ```swift
 let alertV = YQAlertNormalView(title: "标题", detail: "内容文字") { (button) in
             print(">>>>>>>>>>\(String(describing: button.titleLabel?.text))")
@@ -194,7 +195,7 @@ alertV.show()
 ```
 
 #### 创建两个按钮的弹出框, 使用闭包获取到按钮的点击回调, 默认第一个按钮, 标题为`取消`, 按钮类型为`cancel`; 默认第二个按钮的标题为`确认`, 按钮类型为`normal`; 通过闭包获取到每个按钮的点击事件, 并且默认值也支持自定义
-[twoButton](https://github.com/YQqiang/YQAlert/blob/master/twoButton.png)
+![twoButton](https://github.com/YQqiang/YQAlert/blob/master/twoButton.png)
 ```swift
 let alertV = YQAlertNormalView(title: "标题", detail: "详细内容", cancelHandle: { (button) in
             print(">>>>>>>>>>\(String(describing: button.titleLabel?.text))")
@@ -206,7 +207,7 @@ alertV.show()
 ```
 
 #### 操作按钮的增加, 删除 和 插入
-[operationButton](https://github.com/YQqiang/YQAlert/blob/master/operationButton.png)
+![operationButton](https://github.com/YQqiang/YQAlert/blob/master/operationButton.png)
 ```swift
 
 let alertV = YQAlertNormalView(title: "标题", detail: "内容文字") { (button) in
@@ -234,7 +235,7 @@ alertV.show()
 ```
 ### 自定义用法 (ps: 自定义的视图请使用 Auto Layout 布局)
 #### 自定义头视图
-[customHead](https://github.com/YQqiang/YQAlert/blob/master/customHead.png)
+![customHead](https://github.com/YQqiang/YQAlert/blob/master/customHead.png)
 ```swift
 let alertV = YQAlertNormalView(title: "标题", detail: "内容文字") { (button) in
 print(">>>>>>>>>>\(String(describing: button.titleLabel?.text))")
@@ -262,7 +263,7 @@ alertV.buttonViewToLeftAndRightMargin = (8.0, 8.0)
 alertV.show()
 ```
 #### 自定义内容视图
-[customContent](https://github.com/YQqiang/YQAlert/blob/master/customContent.png)
+![customContent](https://github.com/YQqiang/YQAlert/blob/master/customContent.png)
 ```swift
 let alertV = YQAlertNormalView(title: "标题", detail: "内容文字") { (button) in
   print(">>>>>>>>>>\(String(describing: button.titleLabel?.text))")
