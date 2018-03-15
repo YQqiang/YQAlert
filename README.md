@@ -305,8 +305,3 @@ alertV.show()
 - [YQqiang](https://github.com/YQqiang)
 
 欢迎提交 issue 和 PR，大门永远向所有人敞开。
-
-## License
-YQAlert is available under the MIT license. See the LICENSE file for more info.
-
-
